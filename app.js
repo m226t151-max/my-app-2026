@@ -21,10 +21,42 @@ const questions = [
 ];
 
 const types = {
-    "innovator": { name: "クリエイティブ", role: "アイデア出し・発信", style: "直感 × 発想", advice: "あなたの自由な発想はチームの突破口になります。実現可能性を考える人と組むと最強です。", pref: { action: "新しい企画の立案", people: "面白い視点を持つ人" } },
-    "strategist": { name: "ストラテジスト", role: "全体設計・分析", style: "論理 × 客観", advice: "冷静な判断力でミスを防げます。正論が強すぎると場が凍るので、たまには「感情」も変数に入れてみて。", pref: { action: "データの整理、計画立案", people: "合理的で仕事が早い人" } },
-    "supporter": { name: "サポーター", role: "フォロー・調整", style: "共感 × 安定", advice: "あなたの気配りがチームを救います。自分の意見を押し殺しすぎず、違和感は早めに伝えて大丈夫です。", pref: { action: "メンバーのケア、資料作成", people: "誠実で感謝を伝えてくれる人" } },
-    "leader": { name: "プロデューサー", role: "意思決定・推進", style: "責任感 × 決断", advice: "進むべき道を示す力があります。全員に納得させようとせず、時には強引に進める勇気が成功を呼びます。", pref: { action: "全体の進捗管理", people: "行動力があり自立している人" } }
+    "innovator": { 
+        name: "クリエイティブ", 
+        role: "アイデア出し・発信", 
+        style: "直感 × 発想", 
+        illustration: `<svg viewBox="0 0 100 100" class="svg-pop"><circle cx="50" cy="50" r="40" fill="#FFD93D"/><path d="M50 20 L60 40 L80 40 L65 55 L70 75 L50 65 L30 75 L35 55 L20 40 L40 40 Z" fill="#FFF"/></svg>`,
+        description: "あなたは、既存の枠組みにとらわれない自由な思考の持ち主です。誰もが「これが当たり前」と思っていることに対して、「なぜ？」と疑問を持ち、新しい可能性を見出す力に長けています。チームにおいては、行き詰まった状況を打破する『ひらめき』を提供する重要なポジションです。",
+        advice: "あなたの最大の武器は『多角的な視点』です。議論が煮詰まったときこそ、あなたの突飛なアイデアが状況を動かします。ただし、アイデアが抽象的になりすぎると周囲が置いていかれることがあるため、『具体的にどう動くか』をセットで考えるか、実務に強いメンバーと連携することで、あなたの真価がより発揮されます。",
+        behavior: "1. 批判を恐れず、まずは質より量でアイデアを出してみましょう。2. 自分のひらめきを言語化する練習をすると、より周囲の協力を得やすくなります。3. 計画が細かすぎるとストレスを感じるため、自由度の高いパートを担当させてもらうのがベストです。"
+    },
+    "strategist": { 
+        name: "ストラテジスト", 
+        role: "全体設計・分析", 
+        style: "論理 × 客観", 
+        illustration: `<svg viewBox="0 0 100 100" class="svg-pop"><rect x="20" y="20" width="60" height="60" rx="10" fill="#4DBCFF"/><path d="M35 40 L65 40 M35 50 L65 50 M35 60 L50 60" stroke="#FFF" stroke-width="5" stroke-linecap="round"/></svg>`,
+        description: "あなたは、常に一歩引いた視点から物事を冷静に観察できる分析家です。感情に流されず、事実とデータに基づいて最適解を導き出す能力は、チームの安定性と成功率を劇的に高めます。混沌とした状況を整理し、論理的なロードマップを描くことが得意です。",
+        advice: "あなたの冷静さは、チームに『確信』を与えます。リスクを早期に見抜き、致命的なミスを未然に防ぐことができるでしょう。一方で、正論が時に他人の感情を置き去りにしてしまうことがあります。アドバイスを伝える際に『相手の努力』を一度認めるステップを挟むだけで、あなたの提案はよりスムーズに受け入れられるようになります。",
+        behavior: "1. 議論が発散したときは、要点を整理してマイルストーンを提示しましょう。2. 完璧主義に陥りすぎず、スピードが求められる場面では『8割の完成度』で良しとする感覚を持つと楽になります。3. 抽象的な議論を数値化・可視化することで、チームへの貢献度が最大化します。"
+    },
+    "supporter": { 
+        name: "サポーター", 
+        role: "フォロー・調整", 
+        style: "共感 × 安定", 
+        illustration: `<svg viewBox="0 0 100 100" class="svg-pop"><path d="M50 30 C70 10 90 30 50 80 C10 30 30 10 50 30" fill="#FF6B6B"/></svg>`,
+        description: "あなたは、チームの心理的安全性を支える守り神のような存在です。メンバーの小さな変化や感情の機微を敏感に察知し、必要なときにそっと手を差し伸べることができます。あなたの存在があるからこそ、他のメンバーは安心して自分の役割に集中できるのです。",
+        advice: "あなたの貢献は数字には現れにくいかもしれませんが、チームの持続性においては最も重要です。メンバー同士の衝突を和らげ、潤滑油として機能することで、チームの総和を最大化させています。自分を『裏方』だと思わず、あなたの調整力がなければチームは崩壊するという自覚を持ってください。",
+        behavior: "1. 会議で発言が少ない人をフォローし、意見を出しやすい空気を作りましょう。2. 自分の負担が大きくなりやすいので、無理なときはNOと言う勇気を持ちましょう。3. メンバーの良いところを具体的に褒めることで、チーム全体の士気を劇的に上げることができます。"
+    },
+    "leader": { 
+        name: "プロデューサー", 
+        role: "意思決定・推進", 
+        style: "責任感 × 決断", 
+        illustration: `<svg viewBox="0 0 100 100" class="svg-pop"><path d="M50 15 L85 85 L15 85 Z" fill="#6C5CE7"/><circle cx="50" cy="50" r="10" fill="#FFF"/></svg>`,
+        description: "あなたは、目標に向かって迷いなく突き進む圧倒的なエネルギーの持ち主です。困難な状況でも『私たちがやるべきことはこれだ』と指針を示すことができるため、周囲はあなたを自然と頼りにします。責任感が強く、結果を出すための最短ルートを常に探求しています。",
+        advice: "あなたの決断力は、停滞したチームを動かす原動力です。周囲が迷っているときに、あえてリスクを取って決める姿勢は、真のリーダーシップそのものです。ただし、独走しすぎると周囲が疲弊してしまうことがあります。定期的に後ろを振り返り、メンバーとの『納得感の共有』を行うことで、より大きな目標を達成できるはずです。",
+        behavior: "1. チームの最終目標を繰り返し言葉にし、全員の目線を合わせましょう。2. メンバーに仕事を任せる際は、やり方まで指示せず『目的』を伝えることで、相手の成長を促せます。3. 意見が対立したときは、どちらが正しいかではなく、どちらが目標に近いかで判断しましょう。"
+    }
 };
 
 let currentQuestionIndex = 0;
@@ -104,31 +136,29 @@ function showResult() {
     const resultKey = calculateType(rawScores);
     const type = types[resultKey];
 
+    const illustrationContainer = document.getElementById('result-illustration');
+    illustrationContainer.innerHTML = type.illustration;
+
     resultType.innerHTML = `
         <div class="result-pop-card">
             <span class="type-style">${type.style}</span>
-            <h2 class="type-name">${type.name}</h2>
-            <div class="role-chip">推奨ロール: ${type.role}</div>
+            <h1 class="type-name">${type.name}</h1>
+            <div class="role-chip">推奨される役割: ${type.role}</div>
         </div>
     `;
 
     resultDesc.innerHTML = `
         <div class="insight-box">
-            <p class="insight-intro">心理分析の結果、あなたは<strong>「${type.style}」</strong>のバランスが非常に優れています。これはチームにおいて${type.role}として機能することを意味します。</p>
+            <div class="analysis-section">
+                <h3>🔍 あなたの資質分析</h3>
+                <p>${type.description}</p>
+            </div>
             
             <div class="advice-section">
-                <h4>🎯 行動のアドバイス</h4>
+                <h3>🎯 具体的なアクションプラン</h3>
                 <p>${type.advice}</p>
-            </div>
-
-            <div class="pref-grid">
-                <div class="pref-item">
-                    <h5>❤️ 好きな行動</h5>
-                    <p>${type.pref.action}</p>
-                </div>
-                <div class="pref-item">
-                    <h5>👥 好きな人</h5>
-                    <p>${type.pref.people}</p>
+                <div class="behavior-list">
+                    ${type.behavior.split('\n').map(b => `<p class="behavior-item">${b}</p>`).join('')}
                 </div>
             </div>
         </div>
@@ -140,10 +170,10 @@ function showResult() {
 
 function calculateType(s) {
     const scoreMap = {
-        innovator: s.flexibility + s.depth + s.metaphor,
-        strategist: s.objectivity + s.solution + s.detail,
-        supporter: s.shared + s.collaboration + s.social_battery * -1,
-        leader: s.responsibility + s.speed + s.social_battery
+        innovator: (s.flexibility || 0) + (s.depth || 0),
+        strategist: (s.objectivity || 0) + (s.solution || 0) + (s.detail || 0),
+        supporter: (s.shared || 0) + (s.collaboration || 0) + ((s.social_battery || 0) * -1),
+        leader: (s.responsibility || 0) + (s.speed || 0) + (s.social_battery || 0)
     };
     return Object.keys(scoreMap).reduce((a, b) => (scoreMap[a] || 0) > (scoreMap[b] || 0) ? a : b);
 }
@@ -154,17 +184,17 @@ function showView(view) {
 }
 
 function saveResult(typeName) {
-    const history = JSON.parse(localStorage.getItem('pop_insight_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('team_scan_history') || '[]');
     history.unshift({
         date: new Date().toLocaleString('ja-JP'),
         type: typeName
     });
-    localStorage.setItem('pop_insight_history', JSON.stringify(history.slice(0, 10)));
+    localStorage.setItem('team_scan_history', JSON.stringify(history.slice(0, 10)));
     renderHistory();
 }
 
 function renderHistory() {
-    const history = JSON.parse(localStorage.getItem('pop_insight_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('team_scan_history') || '[]');
     historyList.innerHTML = '';
     history.forEach(entry => {
         const li = document.createElement('li');
@@ -175,7 +205,7 @@ function renderHistory() {
 
 function clearHistory() {
     if (confirm('履歴を削除しますか？')) {
-        localStorage.removeItem('pop_insight_history');
+        localStorage.removeItem('team_scan_history');
         renderHistory();
     }
 }

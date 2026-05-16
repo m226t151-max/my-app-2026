@@ -15,7 +15,6 @@
         <main id="app-content">
             <!-- スタート画面 -->
             <div id="start-view" class="view">
-                <p>あなたの性格を診断します。5つの質問に答えてください。</p>
                 <button id="start-btn" class="primary-btn">診断を始める</button>
             </div>
 
@@ -24,18 +23,18 @@
                 <div class="progress-container">
                     <div id="progress-bar"></div>
                 </div>
-                <p id="question-text"></p>
+                <div class="question-container">
+                    <p id="question-text"></p>
+                </div>
                 <div class="options">
-                    <button class="option-btn" data-value="1">はい</button>
-                    <button class="option-btn" data-value="0">いいえ</button>
                 </div>
             </div>
 
             <!-- 結果画面 -->
             <div id="result-view" class="view hidden">
-                <h2>診断結果</h2>
-                <p id="result-type" class="result-highlight"></p>
-                <p id="result-desc"></p>
+                <div id="result-illustration" class="type-illustration"></div>
+                <div id="result-type"></div>
+                <div id="result-desc"></div>
                 <button id="restart-btn" class="secondary-btn">もう一度診断する</button>
             </div>
         </main>
