@@ -168,95 +168,140 @@ header h1 {
     transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.type-illustration {
-    width: 240px;
-    height: 240px;
-    margin-bottom: 2.5rem;
-}
-
-.svg-humanoid {
-    width: 100%;
-    height: 100%;
-}
-
-.result-pop-card {
+.result-pop-card-vivid {
+    background: #fff;
+    padding: 3.5rem;
+    border-radius: 40px;
     margin-bottom: 3.5rem;
+    border: 8px solid var(--primary-color);
+    box-shadow: 0 25px 0 var(--primary-dark);
+    position: relative;
     width: 100%;
+    box-sizing: border-box;
 }
 
-.type-style {
-    font-size: 1rem;
+.type-style-pop {
+    font-size: 1.1rem;
     color: var(--primary-color);
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
     display: block;
 }
 
-.type-name {
-    font-size: 4rem;
+.type-name-pop {
+    font-size: 4.5rem;
     color: var(--text-color);
     font-weight: 900;
-    margin: 0;
+    margin: 0.5rem 0;
+    line-height: 1;
 }
 
-.role-chip {
+.role-chip-vivid {
     display: inline-block;
     background: var(--text-color);
     color: white;
-    padding: 0.6rem 2rem;
-    border-radius: 8px;
-    font-weight: 700;
-    margin-top: 1.5rem;
+    padding: 0.8rem 3rem;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-top: 2rem;
+    box-shadow: 0 6px 0 #000;
 }
 
-.analysis-section, .advice-section {
+.pop-layout-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.pop-card-insight, .pop-card-action {
     background: #fff;
-    padding: 3rem;
-    border-radius: 20px;
-    margin-bottom: 2rem;
+    border-radius: 35px;
+    overflow: hidden;
+    border: 6px solid var(--text-color);
+    box-shadow: 12px 12px 0 var(--secondary-color);
     text-align: left;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
 }
 
-.analysis-section h3, .advice-section h3 {
-    color: var(--primary-color);
-    font-size: 1.4rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
+.pop-card-header {
+    background: var(--text-color);
+    padding: 1.2rem 2rem;
     display: flex;
     align-items: center;
+    gap: 15px;
 }
 
-.analysis-section h3::before, .advice-section h3::before {
-    content: "";
-    display: inline-block;
-    width: 4px;
-    height: 24px;
-    background: var(--primary-color);
-    margin-right: 12px;
-    border-radius: 2px;
+.pop-icon {
+    font-size: 1.8rem;
 }
 
-.behavior-list {
-    background: var(--secondary-color);
-    padding: 2rem;
-    border-radius: 12px;
+.pop-card-header h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.pop-card-body {
+    padding: 2.5rem;
+}
+
+.pop-card-body p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #444;
+    margin: 0;
+}
+
+.action-summary {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 2rem !important;
+}
+
+.pop-behavior-box {
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
 }
 
-.behavior-item {
-    font-weight: 600;
-    margin-bottom: 1.2rem;
-    padding-left: 2rem;
+.pop-behavior-item {
+    background: var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-color);
+    border: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.pop-behavior-item:hover {
+    border-color: var(--primary-color);
+    transform: translateX(10px);
+}
+
+.type-illustration {
+    width: 280px;
+    height: 280px;
+    margin-bottom: 3rem;
     position: relative;
 }
 
-.behavior-item::before {
-    content: "→";
+.type-illustration::after {
+    content: "";
     position: absolute;
-    left: 0;
-    color: var(--primary-color);
+    width: 200px;
+    height: 20px;
+    background: rgba(0,0,0,0.05);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    filter: blur(5px);
 }
 
 .secondary-btn {

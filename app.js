@@ -26,53 +26,64 @@ const types = {
         role: "アイデア出し・発信", 
         style: "INTUITION × CREATIVE", 
         illustration: `<svg viewBox="0 0 100 100" class="svg-humanoid">
-            <circle cx="50" cy="25" r="12" fill="#007AFF"/>
-            <path d="M50 37 L50 70 M50 45 L75 30 M50 45 L25 30 M50 70 L70 90 M50 70 L30 90" stroke="#007AFF" stroke-width="6" stroke-linecap="round" fill="none"/>
-            <circle cx="80" cy="25" r="6" fill="#00D2FF">
-                <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite" />
-            </circle>
+            <circle cx="50" cy="50" r="45" fill="#FFF4D1" opacity="0.5"/>
+            <circle cx="50" cy="22" r="12" fill="#FFB800"/>
+            <path d="M50 34 L50 75 M50 45 L85 35 M50 45 L15 35 M50 75 L75 95 M50 75 L25 95" stroke="#FFB800" stroke-width="8" stroke-linecap="round" fill="none"/>
+            <path d="M80 15 L82 22 L89 22 L83 26 L85 33 L80 29 L75 33 L77 26 L71 22 L78 22 Z" fill="#FFD700">
+                <animateTransform attributeName="transform" type="rotate" from="0 80 25" to="360 80 25" dur="4s" repeatCount="indefinite" />
+            </path>
         </svg>`,
-        description: "あなたは、既存の枠組みにとらわれない自由な思考の持ち主です。誰もが「これが当たり前」と思っていることに対して、「なぜ？」と疑問を持ち、新しい可能性を見出す力に長けています。チームにおいては、行き詰まった状況を打破する『ひらめき』を提供する重要なポジションです。",
-        advice: "あなたの最大の武器は『多角的な視点』です。議論が煮詰まったときこそ、あなたの突飛なアイデアが状況を動かします。ただし、アイデアが抽象的になりすぎると周囲が置いていかれることがあるため、『具体的にどう動くか』をセットで考えるか、実務に強いメンバーと連携することで、あなたの真価がより発揮されます。",
-        behavior: "1. 批判を恐れず、まずは質より量でアイデアを出してみましょう。2. 自分のひらめきを言語化する練習をすると、より周囲の協力を得やすくなります。3. 計画が細かすぎるとストレスを感じるため、自由度の高いパートを担当させてもらうのがベストです。"
+        description: "あなたの脳内は、常に新しいアイデアが弾ける『創造のラボ』です！当たり前の景色に『！』を見出す天才で、停滞した空気を一瞬でワクワクに変える魔法を持っています。チームにおけるあなたの存在は、未開の地を照らすサーチライトそのものです。",
+        advice: "あなたの武器は、誰もが驚く『発想の飛躍』です。議論が詰まったときほど、あなたの出番！ただし、ひらめきが速すぎて周りが追いつけないこともあるので、図解したり例え話を使ったりして、みんなをあなたの冒険に巻き込んでいきましょう。",
+        behavior: "🌟 質より量！まずは10個の『おもしろ案』を出してみる\n🌟 実務が得意な相棒を見つけて、アイデアを形にする\n🌟 「もし〇〇だったら？」という魔法の質問を投げかける"
     },
     "strategist": { 
         name: "STRATEGIST", 
         role: "全体設計・分析", 
         style: "LOGIC × ANALYTICAL", 
         illustration: `<svg viewBox="0 0 100 100" class="svg-humanoid">
-            <circle cx="50" cy="25" r="12" fill="#007AFF"/>
-            <path d="M50 37 L50 70 M50 45 L75 55 M50 45 L25 55 M50 70 L65 95 M50 70 L35 95" stroke="#007AFF" stroke-width="6" stroke-linecap="round" fill="none"/>
-            <rect x="30" y="45" width="40" height="25" rx="4" fill="none" stroke="#007AFF" stroke-width="2" stroke-dasharray="4 2"/>
+            <circle cx="50" cy="50" r="45" fill="#E0F2FF" opacity="0.5"/>
+            <circle cx="50" cy="22" r="12" fill="#007AFF"/>
+            <path d="M50 34 L50 75 M50 45 L80 60 M50 45 L20 60 M50 75 L65 95 M50 70 L35 95" stroke="#007AFF" stroke-width="8" stroke-linecap="round" fill="none"/>
+            <rect x="70" y="20" width="10" height="10" rx="2" fill="#007AFF">
+                <animate attributeName="y" values="20;25;20" dur="2s" repeatCount="indefinite" />
+            </rect>
+            <rect x="75" y="35" width="8" height="8" rx="2" fill="#00D2FF"/>
         </svg>`,
-        description: "あなたは、常に一歩引いた視点から物事を冷静に観察できる分析家です。感情に流されず、事実とデータに基づいて最適解を導き出す能力は、チームの安定性と成功率を劇的に高めます。混沌とした状況を整理し、論理的なロードマップを描くことが得意です。",
-        advice: "あなたの冷静さは、チームに『確信』を与えます。リスクを早期に見抜き、致命的なミスを未然に防ぐことができるでしょう。一方で、正論が時に他人の感情を置き去りにしてしまうことがあります。アドバイスを伝える際に『相手の努力』を一度認めるステップを挟むだけで、あなたの提案はよりスムーズに受け入れられるようになります。",
-        behavior: "1. 議論が発散したときは、要点を整理してマイルストーンを提示しましょう。2. 完璧主義に陥りすぎず、スピードが求められる場面では『8割の完成度』で良しとする感覚を持つと楽になります。3. 抽象的な議論を数値化・可視化することで、チームへの貢献度が最大化します。"
+        description: "あなたは、混沌としたパズルを一瞬で解き明かす『知の設計士』です。感情に左右されず、常に10手先を読み切る冷静さは、チームに最強の安心感を与えます。あなたの描くロードマップは、メンバー全員にとっての『勝利への地図』となります。",
+        advice: "あなたの冷静な分析は、チームの無駄を削ぎ落とし、成功率を最大化します。リスクを察知するセンサーは超一級品！正論を伝えるときは、少しの『ユーモア』や『共感』を添えるだけで、チームの結束力はさらに盤石なものになります。",
+        behavior: "📊 議論の要点を3行でまとめて、迷いを取り除く\n📊 完璧を目指しすぎず、まずは『最小の成功モデル』を作る\n📊 数字や根拠をセットにして、説得力を爆上げする"
     },
     "supporter": { 
         name: "SUPPORTER", 
         role: "フォロー・調整", 
         style: "EMPATHY × STABILITY", 
         illustration: `<svg viewBox="0 0 100 100" class="svg-humanoid">
-            <circle cx="50" cy="25" r="12" fill="#007AFF"/>
-            <path d="M50 37 L50 70 M50 45 C75 35 75 65 50 65 C25 65 25 35 50 45 M50 70 L70 90 M50 70 L30 90" stroke="#007AFF" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <circle cx="50" cy="50" r="45" fill="#FFF0F0" opacity="0.5"/>
+            <circle cx="50" cy="22" r="12" fill="#FF6B6B"/>
+            <path d="M50 34 L50 75 M50 45 C80 30 80 70 50 70 C20 70 20 30 50 45 M50 75 L70 95 M50 75 L30 95" stroke="#FF6B6B" stroke-width="8" stroke-linecap="round" fill="none"/>
+            <path d="M80 30 L82 33 L85 30 L85 27 L82 27 Z" fill="#FF6B6B" transform="scale(2)">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite" />
+            </path>
         </svg>`,
-        description: "あなたは、チームの心理的安全性を支える守り神のような存在です。メンバーの小さな変化や感情の機微を敏感に察知し、必要なときにそっと手を差し伸べることができます。あなたの存在があるからこそ、他のメンバーは安心して自分の役割に集中できるのです。",
-        advice: "あなたの貢献は数字には現れにくいかもしれませんが、チームの持続性においては最も重要です。メンバー同士の衝突を和らげ、潤滑油として機能することで、チームの総和を最大化させています。自分を『裏方』だと思わず、あなたの調整力がなければチームは崩壊するという自覚を持ってください。",
-        behavior: "1. 会議で発言が少ない人をフォローし、意見を出しやすい空気を作りましょう。2. 自分の負担が大きくなりやすいので、無理なときはNOと言う勇気を持ちましょう。3. メンバーの良いところを具体的に褒めることで、チーム全体の士気を劇的に上げることができます。"
+        description: "あなたは、チームという生命体を守る『優しき心臓』です。メンバーの表情一つで不調を察し、場を温めるあなたの配慮は、全員のパフォーマンスを底上げします。あなたがいてくれるからこそ、チームは一つの生き物として機能できるのです。",
+        advice: "あなたの『聴く力』は、どんなスキルよりも希少です。メンバーの衝突を回避し、全員を納得感のあるゴールへ導く力は、プロジェクトの持続性を支えています。自分のケアも忘れずに！あなたが笑っていることが、チームの一番の活力になります。",
+        behavior: "🤝 発言が少ない人に『〇〇さんはどう思う？』とパスを出す\n🤝 メンバーの小さな成功を、誰よりも早く見つけて褒める\n🤝 議論がトゲトゲしてきたら、お菓子や休憩を提案する"
     },
     "leader": { 
         name: "PRODUCER", 
         role: "意思決定・推進", 
         style: "COMMITMENT × DECISIVE", 
         illustration: `<svg viewBox="0 0 100 100" class="svg-humanoid">
-            <circle cx="50" cy="25" r="12" fill="#007AFF"/>
-            <path d="M50 37 L50 70 M50 45 L80 45 M50 45 L20 45 M50 70 L75 95 M50 70 L25 95" stroke="#007AFF" stroke-width="6" stroke-linecap="round" fill="none"/>
-            <path d="M75 35 L85 45 L75 55" stroke="#007AFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <circle cx="50" cy="50" r="45" fill="#F3F0FF" opacity="0.5"/>
+            <circle cx="50" cy="22" r="12" fill="#6C5CE7"/>
+            <path d="M50 34 L50 75 M50 45 L85 45 M50 45 L15 45 M50 75 L75 95 M50 75 L25 95" stroke="#6C5CE7" stroke-width="8" stroke-linecap="round" fill="none"/>
+            <path d="M15 45 L15 20 L35 32 L15 45" fill="#6C5CE7"/>
+            <path d="M15 45 L15 60" stroke="#6C5CE7" stroke-width="4"/>
         </svg>`,
-        description: "あなたは、目標に向かって迷いなく突き進む圧倒的なエネルギーの持ち主です。困難な状況でも『私たちがやるべきことはこれだ』と指針を示すことができるため、周囲はあなたを自然と頼りにします。責任感が強く、結果を出すための最短ルートを常に探求しています。",
-        advice: "あなたの決断力は、停滞したチームを動かす原動力です。周囲が迷っているときに、あえてリスクを取って決める姿勢は、真のリーダーシップそのものです。ただし、独走しすぎると周囲が疲弊してしまうことがあります。定期的に後ろを振り返り、メンバーとの『納得感の共有』を行うことで、より大きな目標を達成できるはずです。",
-        behavior: "1. チームの最終目標を繰り返し言葉にし、全員の目線を合わせましょう。2. メンバーに仕事を任せる際は、やり方まで指示せず『目的』を伝えることで、相手の成長を促せます。3. 意見が対立したときは、どちらが正しいかではなく、どちらが目標に近いかで判断しましょう。"
+        description: "あなたは、嵐の中でも太陽の方向を示し続ける『熱き航海士』です。不確実な未来に一歩踏み出すあなたの決断力は、チーム全員の勇気に火を灯します。掲げた旗（ゴール）に向かって全員を巻き込み、結果を掴み取るパワーは圧巻です。",
+        advice: "あなたの『やり抜く力』は、不可能を可能に変えます。時には強引に道を切り拓く勇気も必要ですが、メンバーと同じ景色を見ているか、定期的に声をかけるだけで、チームの馬力はさらに跳ね上がります。あなたの背中が、みんなの道標です。",
+        behavior: "🚩 チームの『最終ゴール』を何度も, 熱く語りかける\n🚩 決まらない議論に、あえて『一線を引く』決断をする\n🚩 成功したときは『みんなのおかげ』、失敗は『自分の責任』"
     }
 };
 
@@ -164,25 +175,35 @@ function showResult() {
     illustrationContainer.innerHTML = type.illustration;
 
     resultType.innerHTML = `
-        <div class="result-pop-card">
-            <span class="type-style">${type.style}</span>
-            <h1 class="type-name">${type.name}</h1>
-            <div class="role-chip">推奨される役割: ${type.role}</div>
+        <div class="result-pop-card-vivid">
+            <span class="type-style-pop">${type.style}</span>
+            <h1 class="type-name-pop">${type.name}</h1>
+            <div class="role-chip-vivid">${type.role}</div>
         </div>
     `;
 
     resultDesc.innerHTML = `
-        <div class="insight-box">
-            <div class="analysis-section">
-                <h3>🔍 あなたの資質分析</h3>
-                <p>${type.description}</p>
+        <div class="pop-layout-container">
+            <div class="pop-card-insight">
+                <div class="pop-card-header">
+                    <span class="pop-icon">🔍</span>
+                    <h3>あなたの資質分析</h3>
+                </div>
+                <div class="pop-card-body">
+                    <p>${type.description}</p>
+                </div>
             </div>
             
-            <div class="advice-section">
-                <h3>🎯 具体的なアクションプラン</h3>
-                <p>${type.advice}</p>
-                <div class="behavior-list">
-                    ${type.behavior.split('\n').map(b => `<p class="behavior-item">${b}</p>`).join('')}
+            <div class="pop-card-action">
+                <div class="pop-card-header">
+                    <span class="pop-icon">🎯</span>
+                    <h3>アクションプラン</h3>
+                </div>
+                <div class="pop-card-body">
+                    <p class="action-summary">${type.advice}</p>
+                    <div class="pop-behavior-box">
+                        ${type.behavior.split('\n').map(b => `<div class="pop-behavior-item">${b}</div>`).join('')}
+                    </div>
                 </div>
             </div>
         </div>
