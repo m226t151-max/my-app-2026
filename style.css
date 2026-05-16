@@ -115,6 +115,21 @@ button {
     transition: width 0.3s;
 }
 
+.arch-name {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.arch-trait {
+    font-size: 1rem;
+    color: #666;
+    font-weight: normal;
+    background: #f0f0f0;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+}
+
 .result-highlight {
     font-size: 1.5rem;
     font-weight: bold;
