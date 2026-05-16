@@ -1,35 +1,34 @@
 const questions = [
-    // Social Drive (E/I)
-    { text: "一人で作業するよりも、チームや対面で意見を交わしながら進める方が、質が高まると感じる。", dimension: "social", weight: 1.2 },
-    { text: "新しい環境や初対面の人との交流を、楽しみよりも負担に感じることが多い。", dimension: "social", weight: 1.0, inverse: true },
-    { text: "週末は誰とも会わずに過ごすと、心身ともに回復した実感が持てる。", dimension: "social", weight: 0.8, inverse: true },
+    // R1: Leadership/Facilitation (Influence & Vision)
+    { text: "グループでの話し合いでは、自分から口火を切って方向性を決めることが苦ではない。", dimension: "leadership", weight: 1.2 },
+    { text: "意見が対立した際、双方の妥協点を見つけて場を収めることが得意だ。", dimension: "facilitation", weight: 1.0 },
 
-    // Data Reliance (S/N)
-    { text: "何かを決める際、「なんとなくの直感」よりも「数値や過去の実績」を第一の判断材料にする。", dimension: "data", weight: 1.2 },
-    { text: "マニュアルや手順書がない状況で動くよりも、ルールが明確な方が力を発揮できる。", dimension: "data", weight: 1.0 },
-    { text: "将来の大きなビジョンを語るより、今日の具体的なタスクを片付けることに満足感を得る。", dimension: "data", weight: 0.8 },
+    // R2: Support/Documentation (Details & Order)
+    { text: "議論を整理し、決定事項を後から見返せるように記録することにやりがいを感じる。", dimension: "support", weight: 1.2 },
+    { text: "大きな方針を決めるよりも、具体的なタスクの抜け漏れをチェックする方が落ち着く。", dimension: "support", weight: 1.0 },
 
-    // Logic Weight (T/F)
-    { text: "話し合いの場では、相手の気持ちを汲み取ることより、正論や効率を重視する。", dimension: "logic", weight: 1.2 },
-    { text: "「冷徹」と言われることがあっても、客観的な正しさを貫くことが信頼に繋がると信じている。", dimension: "logic", weight: 1.0 },
-    { text: "映画や物語を観て、論理的な矛盾が気になると、内容に感情移入できなくなることがある。", dimension: "logic", weight: 0.8 },
+    // R3: Creativity/Presentation (Expression & Concept)
+    { text: "自分の考えをスライドや言葉で視覚化し、他人に伝えることが好きだ。", dimension: "expression", weight: 1.2 },
+    { text: "既存のルールに従うよりも、「もっと面白い方法があるはずだ」と新しい提案をしたい。", dimension: "creativity", weight: 1.0 },
 
-    // Action Speed (J/P)
-    { text: "ギリギリまで情報を集めて柔軟に変えるより、早めに計画を固定して安心したい。", dimension: "action", weight: 1.2 },
-    { text: "突発的な予定変更にはストレスを感じ、当初の計画を維持しようとする。", dimension: "action", weight: 1.0 },
-    { text: "机の上や部屋が整理整頓されていないと、思考の集中力が著しく低下する。", dimension: "action", weight: 0.8 }
+    // P1: Action/Environment/People Preferences
+    { text: "一人で黙々と作業する時間よりも、対話を通じてアイデアを磨く時間の方が好きだ。", dimension: "interpersonal", weight: 1.2 },
+    { text: "不確実で自由な状況よりも、役割とゴールが明確な環境の方が力を発揮できる。", dimension: "structure", weight: 1.0 },
+    { text: "感情的な共感よりも、知的な刺激をくれる人と一緒にいることに価値を感じる。", dimension: "intellectual", weight: 1.0 },
+    { text: "計画通りに物事を進めることそのものに快感を覚える。", dimension: "order", weight: 1.0 }
 ];
 
-const componentLabels = {
-    social: "対人エネルギー",
-    data: "情報信頼度",
-    logic: "論理優先度",
-    action: "計画完遂度"
+const roleDefinitions = {
+    "leader": { name: "舵取りリーダー", role: "意思決定と全体指揮", advice: "全体の進捗を常に把握し、停滞した時に「決める」勇気を持ちましょう。周囲に意見を求める余裕も忘れずに。" },
+    "subLeader": { name: "伴走型サブリーダー", role: "リーダーの補佐と調整", advice: "リーダーが見落としがちなメンバーの不満や細部をフォローしましょう。橋渡し役としての存在感が鍵です。" },
+    "facilitator": { name: "調整役（ファシリテーター）", role: "場の活性化と合意形成", advice: "発言の少ない人に話を振ったり、対立をポジティブな議論に変えることを意識してください。" },
+    "scribe": { name: "知の書記官（記録担当）", role: "情報の整理と資産化", advice: "ただ記録するだけでなく、議論を構造化して「今、何が決まったか」を随時共有すると感謝されます。" },
+    "presenter": { name: "伝えるプロ（発表者）", role: "成果の視覚化と発信", advice: "聞き手が何を求めているかを意識しましょう。論理だけでなく、熱意を乗せるとより伝わります。" },
+    "analyst": { name: "精密アナリスト（分析担当）", role: "論理チェックとリスク管理", advice: "「なぜ？」という視点を持ち続け、計画の穴を塞ぎましょう。批判ではなく、改善案として伝えるのがコツです。" }
 };
 
 let currentQuestionIndex = 0;
-// 各指標 0〜100% で算出するためのスコア
-let scores = { social: 0, data: 0, logic: 0, action: 0 };
+let rawScores = {};
 
 // DOM Elements
 const startView = document.getElementById('start-view');
@@ -48,7 +47,8 @@ document.getElementById('clear-history-btn').addEventListener('click', clearHist
 
 function startQuiz() {
     currentQuestionIndex = 0;
-    scores = { social: 0, data: 0, logic: 0, action: 0 };
+    rawScores = {};
+    questions.forEach(q => rawScores[q.dimension] = 0);
     showView(quizView);
     updateQuestion();
     renderHistory();
@@ -62,11 +62,11 @@ function updateQuestion() {
     optionsContainer.innerHTML = '';
     
     const values = [
-        { val: -2, label: "全くない", size: "lg" },
+        { val: -2, label: "全く違う", size: "lg" },
         { val: -1, label: "", size: "sm" },
-        { val: 0, label: "普通", size: "md" },
+        { val: 0, label: "どちらでもない", size: "md" },
         { val: 1, label: "", size: "sm" },
-        { val: 2, label: "非常にある", size: "lg" }
+        { val: 2, label: "その通りだ", size: "lg" }
     ];
 
     values.forEach(item => {
@@ -82,11 +82,7 @@ function updateQuestion() {
 
 function handleAnswer(value) {
     const q = questions[currentQuestionIndex];
-    const adjustedValue = q.inverse ? -value : value;
-    
-    // スコア加算（正規化は最後に行う）
-    // 1質問あたり最大 2 * weight
-    scores[q.dimension] += (adjustedValue * q.weight);
+    rawScores[q.dimension] += (value * q.weight);
     
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
@@ -99,65 +95,52 @@ function handleAnswer(value) {
 function showResult() {
     progressBar.style.width = '100%';
     
-    // 各指標を 0-100 のパーセンテージに変換
-    // 理論上の最小値は - (2 * (1.2+1.0+0.8)) = -6
-    // 理論上の最大値は +6
-    // (score + 6) / 12 * 100
-    const finalScores = {};
-    for (const key in scores) {
-        let percentage = ((scores[key] + 6) / 12) * 100;
-        finalScores[key] = Math.min(Math.max(Math.round(percentage), 0), 100);
-    }
+    const roleKey = calculateRole(rawScores);
+    const role = roleDefinitions[roleKey];
+    const preferences = calculatePreferences(rawScores);
 
-    // インサイトの生成
-    const insights = generateInsights(finalScores);
-    
-    resultType.innerHTML = `<div class="composition-grid">
-        ${Object.entries(finalScores).map(([key, val]) => `
-            <div class="comp-item">
-                <span class="comp-label">${componentLabels[key]}</span>
-                <div class="comp-bar-bg"><div class="comp-bar-fill" style="width: ${val}%"></div></div>
-                <span class="comp-val">${val}%</span>
-            </div>
-        `).join('')}
-    </div>`;
+    resultType.innerHTML = `
+        <div class="role-result">
+            <span class="role-badge">適正ロール</span>
+            <h2 class="role-name">${role.name}</h2>
+            <p class="role-task">主な役割: ${role.role}</p>
+        </div>
+    `;
 
-    resultDesc.innerHTML = `<div class="insight-container">
-        <h3>分析インサイト</h3>
-        <p class="main-type-label">あなたは <strong>「${getMainType(finalScores)}」</strong> 傾向が強いタイプです。</p>
-        <ul class="insight-list">
-            ${insights.map(i => `<li>${i}</li>`).join('')}
-        </ul>
-    </div>`;
+    resultDesc.innerHTML = `
+        <div class="insight-container">
+            <h3>💡 行動・思考のアドバイス</h3>
+            <p>${role.advice}</p>
+
+            <h3>❤️ あなたの「好き」の傾向</h3>
+            <ul class="pref-list">
+                <li><strong>行動:</strong> ${preferences.action}</li>
+                <li><strong>環境:</strong> ${preferences.env}</li>
+                <li><strong>人物:</strong> ${preferences.people}</li>
+            </ul>
+        </div>
+    `;
     
     showView(resultView);
-    saveResult(`構成分析: ${getMainType(finalScores)}`);
+    saveResult(`${role.name}`);
 }
 
-function getMainType(s) {
-    if (s.social > 60 && s.action > 60) return "推進リーダー";
-    if (s.data > 60 && s.logic > 60) return "精密アナリスト";
-    if (s.social < 40 && s.logic > 60) return "独立思考家";
-    if (s.social > 60 && s.logic < 40) return "調和サポーター";
-    if (s.action < 40 && s.data < 40) return "柔軟クリエイター";
-    return "バランスプレイヤー";
+function calculateRole(s) {
+    // 簡易的な判定ロジック
+    if (s.leadership > 1) return "leader";
+    if (s.expression > 1) return "presenter";
+    if (s.support > 1) return "scribe";
+    if (s.facilitation > 0.5) return "facilitator";
+    if (s.creativity > 0.5) return "analyst";
+    return "subLeader";
 }
 
-function generateInsights(s) {
-    const ins = [];
-    if (s.social > 70) ins.push("交流からエネルギーを得るため、孤独な長時間の作業は効率を下げます。適度な雑談を。");
-    else if (s.social < 30) ins.push("一人の時間を確保することで思考が深化します。重要な決断は静かな環境で。");
-
-    if (s.data > 70) ins.push("確実性を重視するあまり、前例のない挑戦に躊躇しがちです。たまには直感も信じて。");
-    else if (s.data < 30) ins.push("抽象的な概念を扱うのが得意ですが、細部の詰めが甘くなる傾向があります。確認作業を大切に。");
-
-    if (s.logic > 70) ins.push("論理的整合性を求めすぎるあまり、周囲との感情的な摩擦を生む可能性があります。");
-    else if (s.logic < 30) ins.push("他人の期待に応えようとしすぎて、自分自身の本音を後回しにする傾向があります。");
-
-    if (s.action > 70) ins.push("計画通りに進まないと強いストレスを感じます。バッファを持たせたスケジュール設計を。");
-    else if (s.action < 30) ins.push("締め切り間際に集中力が上がるタイプですが、周囲をヒヤヒヤさせることも。");
-
-    return ins;
+function calculatePreferences(s) {
+    return {
+        action: s.interpersonal > 0 ? "対話を通じたブラッシュアップ、共有" : "静かな環境での深い思考、具体化",
+        env: s.structure > 0 ? "役割と手順が明確な整った場" : "自由度が高く、変化を楽しめる場",
+        people: s.intellectual > 0 ? "専門性が高く、知的な刺激をくれる人" : "共感的で、心理的安全性を守ってくれる人"
+    };
 }
 
 function showView(view) {
@@ -166,17 +149,17 @@ function showView(view) {
 }
 
 function saveResult(typeName) {
-    const history = JSON.parse(localStorage.getItem('inbody_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('group_role_history') || '[]');
     history.unshift({
         date: new Date().toLocaleString('ja-JP'),
         type: typeName
     });
-    localStorage.setItem('inbody_history', JSON.stringify(history.slice(0, 10)));
+    localStorage.setItem('group_role_history', JSON.stringify(history.slice(0, 10)));
     renderHistory();
 }
 
 function renderHistory() {
-    const history = JSON.parse(localStorage.getItem('inbody_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('group_role_history') || '[]');
     historyList.innerHTML = '';
     history.forEach(entry => {
         const li = document.createElement('li');
@@ -187,7 +170,7 @@ function renderHistory() {
 
 function clearHistory() {
     if (confirm('履歴を削除しますか？')) {
-        localStorage.removeItem('inbody_history');
+        localStorage.removeItem('group_role_history');
         renderHistory();
     }
 }

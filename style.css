@@ -180,6 +180,46 @@ button {
     line-height: 1.6;
 }
 
+.role-result {
+    margin: 1.5rem 0;
+}
+
+.role-badge {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.role-name {
+    font-size: 2.2rem;
+    margin: 0.5rem 0;
+    color: var(--text-color);
+}
+
+.role-task {
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+}
+
+.pref-list {
+    list-style: none;
+    padding: 0;
+}
+
+.pref-list li {
+    background: white;
+    margin-bottom: 0.5rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
 .result-highlight {
     font-size: 1.5rem;
     font-weight: bold;
