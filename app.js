@@ -1,30 +1,37 @@
 const questions = [
-    // R1: Leadership/Facilitation (Influence & Vision)
+    // R1: Leadership/Facilitation
     { text: "グループでの話し合いでは、自分から口火を切って方向性を決めることが苦ではない。", dimension: "leadership", weight: 1.2 },
     { text: "意見が対立した際、双方の妥協点を見つけて場を収めることが得意だ。", dimension: "facilitation", weight: 1.0 },
 
-    // R2: Support/Documentation (Details & Order)
+    // R2: Support/Documentation
     { text: "議論を整理し、決定事項を後から見返せるように記録することにやりがいを感じる。", dimension: "support", weight: 1.2 },
     { text: "大きな方針を決めるよりも、具体的なタスクの抜け漏れをチェックする方が落ち着く。", dimension: "support", weight: 1.0 },
 
-    // R3: Creativity/Presentation (Expression & Concept)
+    // R3: Creativity/Presentation
     { text: "自分の考えをスライドや言葉で視覚化し、他人に伝えることが好きだ。", dimension: "expression", weight: 1.2 },
     { text: "既存のルールに従うよりも、「もっと面白い方法があるはずだ」と新しい提案をしたい。", dimension: "creativity", weight: 1.0 },
 
-    // P1: Action/Environment/People Preferences
-    { text: "一人で黙々と作業する時間よりも、対話を通じてアイデアを磨く時間の方が好きだ。", dimension: "interpersonal", weight: 1.2 },
-    { text: "不確実で自由な状況よりも、役割とゴールが明確な環境の方が力を発揮できる。", dimension: "structure", weight: 1.0 },
-    { text: "感情的な共感よりも、知的な刺激をくれる人と一緒にいることに価値を感じる。", dimension: "intellectual", weight: 1.0 },
-    { text: "計画通りに物事を進めることそのものに快感を覚える。", dimension: "order", weight: 1.0 }
+    // S1: Sub-Type Determinants (Passion/Social vs Logic/Method)
+    { text: "論理的な正しさよりも、メンバーのやる気や熱量を高めることの方が重要だと思う。", dimension: "passion", weight: 1.0 },
+    { text: "新しいことを始めるワクワク感よりも、最後まで着実にやり遂げる安心感の方が好きだ。", dimension: "stability", weight: 1.0 },
+    { text: "想定外のトラブルが起きた時、慌てるよりも「どう解決するか」と頭が冷えていく感覚がある。", dimension: "logic_calm", weight: 1.0 },
+    { text: "自分の成果を褒められるよりも、チーム全体の雰囲気が良いことの方が嬉しい。", dimension: "harmony", weight: 1.0 }
 ];
 
-const roleDefinitions = {
-    "leader": { name: "舵取りリーダー", role: "意思決定と全体指揮", advice: "全体の進捗を常に把握し、停滞した時に「決める」勇気を持ちましょう。周囲に意見を求める余裕も忘れずに。" },
-    "subLeader": { name: "伴走型サブリーダー", role: "リーダーの補佐と調整", advice: "リーダーが見落としがちなメンバーの不満や細部をフォローしましょう。橋渡し役としての存在感が鍵です。" },
-    "facilitator": { name: "調整役（ファシリテーター）", role: "場の活性化と合意形成", advice: "発言の少ない人に話を振ったり、対立をポジティブな議論に変えることを意識してください。" },
-    "scribe": { name: "知の書記官（記録担当）", role: "情報の整理と資産化", advice: "ただ記録するだけでなく、議論を構造化して「今、何が決まったか」を随時共有すると感謝されます。" },
-    "presenter": { name: "伝えるプロ（発表者）", role: "成果の視覚化と発信", advice: "聞き手が何を求めているかを意識しましょう。論理だけでなく、熱意を乗せるとより伝わります。" },
-    "analyst": { name: "精密アナリスト（分析担当）", role: "論理チェックとリスク管理", advice: "「なぜ？」という視点を持ち続け、計画の穴を塞ぎましょう。批判ではなく、改善案として伝えるのがコツです。" }
+const mainRoles = {
+    "leader": { name: "リーダー", task: "意思決定と全体指揮" },
+    "subLeader": { name: "サブリーダー", task: "補佐とチームの潤滑油" },
+    "facilitator": { name: "ファシリテーター", task: "議論の活性化と合意形成" },
+    "scribe": { name: "書記・記録", task: "情報の構造化と記録" },
+    "presenter": { name: "発表・プレゼンター", task: "成果の発信と視覚化" },
+    "analyst": { name: "アナリスト", task: "論理チェックとリスク管理" }
+};
+
+const subTypes = {
+    "passionate": { name: "情熱型", trait: "熱量で周囲を動かす", advice: "あなたのエネルギーは最大の武器ですが、冷静なメンバーとの温度差に注意しましょう。" },
+    "strategic": { name: "戦略型", trait: "効率とゴールを見据える", advice: "最短ルートを見抜く力がありますが、プロセスの納得感を大切にするとより協力が得られます。" },
+    "empathic": { name: "共感型", trait: "心の安全性を守る", advice: "メンバーのケアは素晴らしいですが、時には耳の痛い正論を伝える勇気も持ちましょう。" },
+    "methodical": { name: "着実型", trait: "確実性と精度を追求する", advice: "ミスのなさは信頼に直結します。変化の激しい状況では、6割の完成度で動く練習もしてみて。" }
 };
 
 let currentQuestionIndex = 0;
@@ -47,8 +54,11 @@ document.getElementById('clear-history-btn').addEventListener('click', clearHist
 
 function startQuiz() {
     currentQuestionIndex = 0;
-    rawScores = {};
-    questions.forEach(q => rawScores[q.dimension] = 0);
+    rawScores = {
+        leadership: 0, facilitation: 0, support: 0,
+        expression: 0, creativity: 0, passion: 0,
+        stability: 0, logic_calm: 0, harmony: 0
+    };
     showView(quizView);
     updateQuestion();
     renderHistory();
@@ -82,7 +92,7 @@ function updateQuestion() {
 
 function handleAnswer(value) {
     const q = questions[currentQuestionIndex];
-    rawScores[q.dimension] += (value * q.weight);
+    rawScores[q.dimension] += value;
     
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
@@ -95,52 +105,70 @@ function handleAnswer(value) {
 function showResult() {
     progressBar.style.width = '100%';
     
-    const roleKey = calculateRole(rawScores);
-    const role = roleDefinitions[roleKey];
-    const preferences = calculatePreferences(rawScores);
+    const mainKey = calculateMainRole(rawScores);
+    const subKey = calculateSubType(rawScores);
+    
+    const main = mainRoles[mainKey];
+    const sub = subTypes[subKey];
 
     resultType.innerHTML = `
         <div class="role-result">
-            <span class="role-badge">適正ロール</span>
-            <h2 class="role-name">${role.name}</h2>
-            <p class="role-task">主な役割: ${role.role}</p>
+            <span class="role-badge">${sub.name} × ${main.name}</span>
+            <h2 class="role-name">${sub.name}な${main.name}</h2>
+            <p class="role-task">専門領域: ${main.task}</p>
         </div>
     `;
 
     resultDesc.innerHTML = `
         <div class="insight-container">
-            <h3>💡 行動・思考のアドバイス</h3>
-            <p>${role.advice}</p>
+            <h3>📌 あなたの独自スタイル</h3>
+            <p><strong>${sub.trait}</strong>があなたの特徴です。同じ「${main.name}」担当の中でも、${sub.trait.toLowerCase()}という点が周囲からの信頼に繋がっています。</p>
 
-            <h3>❤️ あなたの「好き」の傾向</h3>
+            <h3>💡 このタイプへのアドバイス</h3>
+            <p>${sub.advice}</p>
+
+            <h3>🔍 好みの傾向</h3>
             <ul class="pref-list">
-                <li><strong>行動:</strong> ${preferences.action}</li>
-                <li><strong>環境:</strong> ${preferences.env}</li>
-                <li><strong>人物:</strong> ${preferences.people}</li>
+                <li><strong>心地よい行動:</strong> ${getDetailedPref(subKey, 'action')}</li>
+                <li><strong>求める環境:</strong> ${getDetailedPref(subKey, 'env')}</li>
             </ul>
         </div>
     `;
     
     showView(resultView);
-    saveResult(`${role.name}`);
+    saveResult(`${sub.name}な${main.name}`);
 }
 
-function calculateRole(s) {
-    // 簡易的な判定ロジック
-    if (s.leadership > 1) return "leader";
-    if (s.expression > 1) return "presenter";
-    if (s.support > 1) return "scribe";
-    if (s.facilitation > 0.5) return "facilitator";
-    if (s.creativity > 0.5) return "analyst";
-    return "subLeader";
-}
-
-function calculatePreferences(s) {
-    return {
-        action: s.interpersonal > 0 ? "対話を通じたブラッシュアップ、共有" : "静かな環境での深い思考、具体化",
-        env: s.structure > 0 ? "役割と手順が明確な整った場" : "自由度が高く、変化を楽しめる場",
-        people: s.intellectual > 0 ? "専門性が高く、知的な刺激をくれる人" : "共感的で、心理的安全性を守ってくれる人"
+function calculateMainRole(s) {
+    const scores = {
+        leader: s.leadership * 1.5,
+        presenter: s.expression * 1.5,
+        scribe: s.support * 1.5,
+        facilitator: s.facilitation * 1.2,
+        analyst: s.creativity * 1.2,
+        subLeader: (s.support + s.facilitation) / 2
     };
+    return Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+}
+
+function calculateSubType(s) {
+    const scores = {
+        passionate: s.passion,
+        strategic: s.logic_calm,
+        empathic: s.harmony,
+        methodical: s.stability
+    };
+    return Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+}
+
+function getDetailedPref(sub, type) {
+    const prefs = {
+        passionate: { action: "熱い議論、ビジョンの共有", env: "エネルギーに満ちた、活気ある現場" },
+        strategic: { action: "効率化の検討、勝算の分析", env: "目的が明確で、無駄のない環境" },
+        empathic: { action: "対話による相互理解、ケア", env: "心理的安全性が高く、温かいチーム" },
+        methodical: { action: "手順の確立、確実な遂行", env: "ルールが整備された、安定感のある場" }
+    };
+    return prefs[sub][type];
 }
 
 function showView(view) {
@@ -149,17 +177,17 @@ function showView(view) {
 }
 
 function saveResult(typeName) {
-    const history = JSON.parse(localStorage.getItem('group_role_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('group_role_v2_history') || '[]');
     history.unshift({
         date: new Date().toLocaleString('ja-JP'),
         type: typeName
     });
-    localStorage.setItem('group_role_history', JSON.stringify(history.slice(0, 10)));
+    localStorage.setItem('group_role_v2_history', JSON.stringify(history.slice(0, 10)));
     renderHistory();
 }
 
 function renderHistory() {
-    const history = JSON.parse(localStorage.getItem('group_role_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('group_role_v2_history') || '[]');
     historyList.innerHTML = '';
     history.forEach(entry => {
         const li = document.createElement('li');
@@ -170,7 +198,7 @@ function renderHistory() {
 
 function clearHistory() {
     if (confirm('履歴を削除しますか？')) {
-        localStorage.removeItem('group_role_history');
+        localStorage.removeItem('group_role_v2_history');
         renderHistory();
     }
 }
