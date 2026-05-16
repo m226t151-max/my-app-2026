@@ -111,25 +111,32 @@ function updateQuestion() {
     optionsContainer.innerHTML = '';
     
     const values = [
-        { val: -2, label: "NO", color: "#E1E8F0", size: "lg" },
-        { val: -1, label: "", color: "#E1E8F0", size: "sm" },
+        { val: -2, label: "NO", color: "#FF6B6B", size: "lg" },
+        { val: -1, label: "", color: "#FFB3B3", size: "sm" },
         { val: 0, label: "MIDDLE", color: "#E1E8F0", size: "md" },
-        { val: 1, label: "", color: "#E1E8F0", size: "sm" },
+        { val: 1, label: "", color: "#A3D8FF", size: "sm" },
         { val: 2, label: "YES", color: "#007AFF", size: "lg" }
     ];
 
     values.forEach(item => {
+        const btnWrapper = document.createElement('div');
+        btnWrapper.className = 'pop-btn-wrapper';
+
         const btn = document.createElement('button');
         btn.className = `pop-btn pop-size-${item.size}`;
-        if (item.val === 2) btn.style.borderColor = "#007AFF";
+        btn.style.backgroundColor = item.color;
+        btn.style.borderColor = "#fff";
+        
         if (item.label) {
             const labelSpan = document.createElement('span');
-            labelSpan.className = 'pop-btn-label';
+            labelSpan.className = 'pop-btn-label-persistent';
             labelSpan.textContent = item.label;
-            btn.appendChild(labelSpan);
+            btnWrapper.appendChild(labelSpan);
         }
+        
         btn.onclick = () => handleAnswer(item.val);
-        optionsContainer.appendChild(btn);
+        btnWrapper.appendChild(btn);
+        optionsContainer.appendChild(btnWrapper);
     });
 
     progressBar.style.width = `${(currentQuestionIndex / questions.length) * 100}%`;
