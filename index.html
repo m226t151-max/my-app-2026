@@ -20,6 +20,9 @@
 
             <!-- クイズ画面 -->
             <div id="quiz-view" class="view hidden">
+                <div class="progress-info">
+                    <span id="question-count"></span>
+                </div>
                 <div class="progress-container">
                     <div id="progress-bar"></div>
                 </div>
@@ -35,15 +38,11 @@
                 <div id="result-illustration" class="type-illustration"></div>
                 <div id="result-type"></div>
                 <div id="result-desc"></div>
-                <button id="restart-btn" class="secondary-btn">もう一度診断する</button>
+                <div class="result-footer">
+                    <button id="restart-btn" class="secondary-btn">もう一度診断する</button>
+                </div>
             </div>
         </main>
-
-        <section id="history-section">
-            <h3>診断履歴</h3>
-            <ul id="history-list"></ul>
-            <button id="clear-history-btn" class="text-btn">履歴をクリア</button>
-        </section>
     </div>
     <script src="app.js"></script>
 </body>

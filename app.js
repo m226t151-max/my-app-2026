@@ -95,15 +95,14 @@ const startView = document.getElementById('start-view');
 const quizView = document.getElementById('quiz-view');
 const resultView = document.getElementById('result-view');
 const questionText = document.getElementById('question-text');
+const questionCount = document.getElementById('question-count');
 const progressBar = document.getElementById('progress-bar');
 const resultType = document.getElementById('result-type');
 const resultDesc = document.getElementById('result-desc');
-const historyList = document.getElementById('history-list');
 
 // Event Listeners
 document.getElementById('start-btn').addEventListener('click', startQuiz);
 document.getElementById('restart-btn').addEventListener('click', startQuiz);
-document.getElementById('clear-history-btn').addEventListener('click', clearHistory);
 
 function startQuiz() {
     currentQuestionIndex = 0;
@@ -111,12 +110,12 @@ function startQuiz() {
     questions.forEach(q => rawScores[q.dimension] = 0);
     showView(quizView);
     updateQuestion();
-    renderHistory();
 }
 
 function updateQuestion() {
     const q = questions[currentQuestionIndex];
     questionText.textContent = q.text;
+    questionCount.textContent = `QUESTION ${currentQuestionIndex + 1} / ${questions.length}`;
     
     const optionsContainer = document.querySelector('.options');
     optionsContainer.innerHTML = '';
@@ -210,7 +209,6 @@ function showResult() {
     `;
     
     showView(resultView);
-    saveResult(`${type.name}タイプ`);
 }
 
 function calculateType(s) {
@@ -227,32 +225,3 @@ function showView(view) {
     [startView, quizView, resultView].forEach(v => v.classList.add('hidden'));
     view.classList.remove('hidden');
 }
-
-function saveResult(typeName) {
-    const history = JSON.parse(localStorage.getItem('team_scan_v3_history') || '[]');
-    history.unshift({
-        date: new Date().toLocaleString('ja-JP'),
-        type: typeName
-    });
-    localStorage.setItem('team_scan_v3_history', JSON.stringify(history.slice(0, 10)));
-    renderHistory();
-}
-
-function renderHistory() {
-    const history = JSON.parse(localStorage.getItem('team_scan_v3_history') || '[]');
-    historyList.innerHTML = '';
-    history.forEach(entry => {
-        const li = document.createElement('li');
-        li.innerHTML = `<span>${entry.date}</span> <span>${entry.type}</span>`;
-        historyList.appendChild(li);
-    });
-}
-
-function clearHistory() {
-    if (confirm('履歴を削除しますか？')) {
-        localStorage.removeItem('team_scan_v3_history');
-        renderHistory();
-    }
-}
-
-renderHistory();
