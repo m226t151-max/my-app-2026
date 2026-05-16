@@ -64,17 +64,34 @@ button {
     border: 1px solid #ddd;
 }
 
-.option-btn {
-    background-color: #fff;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    width: 100%;
+.options {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2rem 0;
 }
 
-.option-btn:hover {
-    background-color: var(--primary-color);
-    color: white;
+.scale-btn {
+    border-radius: 50%;
+    border: 3px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+    margin: 0;
 }
+
+.scale-lg { width: 50px; height: 50px; border-color: var(--primary-color); }
+.scale-md { width: 40px; height: 40px; border-color: #ccc; }
+.scale-sm { width: 30px; height: 30px; border-color: var(--accent-color); }
+
+.scale-btn:hover {
+    transform: scale(1.1);
+    background-color: #f0f0f0;
+}
+
+.scale-lg:hover { border-color: var(--primary-color); background-color: rgba(74, 144, 226, 0.1); }
+.scale-sm:hover { border-color: var(--accent-color); background-color: rgba(233, 78, 119, 0.1); }
 
 .text-btn {
     background: none;
