@@ -1,37 +1,30 @@
 const questions = [
-    // R1: Leadership/Facilitation
-    { text: "グループでの話し合いでは、自分から口火を切って方向性を決めることが苦ではない。", dimension: "leadership", weight: 1.2 },
-    { text: "意見が対立した際、双方の妥協点を見つけて場を収めることが得意だ。", dimension: "facilitation", weight: 1.0 },
+    // Indirect: Systemizing vs Empathizing (Analyst/Leader vs Facilitator/Scribe)
+    { text: "新しい家電を買ったとき、説明書を読む前にとりあえず触って動かしてみる。", dimension: "impulse", weight: 1.0 },
+    { text: "他人の家の本棚を見ると、持ち主が「何を考えているか」よりも「どう分類しているか」が気になる。", dimension: "structure", weight: 1.0 },
+    
+    // Indirect: Focus of Control (Leader/Sub vs Scribe/Analyst)
+    { text: "映画を観るとき、主人公よりも、その背後で計画を練っている参謀や黒幕に惹かれることが多い。", dimension: "strategic", weight: 1.0 },
+    { text: "行列のできる店に並んでいるとき、待ち時間よりも「列がどれくらい効率的に捌けているか」が気になってしまう。", dimension: "efficiency", weight: 1.0 },
 
-    // R2: Support/Documentation
-    { text: "議論を整理し、決定事項を後から見返せるように記録することにやりがいを感じる。", dimension: "support", weight: 1.2 },
-    { text: "大きな方針を決めるよりも、具体的なタスクの抜け漏れをチェックする方が落ち着く。", dimension: "support", weight: 1.0 },
+    // Indirect: Communication Style (Presenter/Leader vs Scribe/Facilitator)
+    { text: "自分のアイデアを説明するとき、正確な定義よりも「たとえ話」や「イメージ」を多用する方だ。", dimension: "metaphor", weight: 1.0 },
+    { text: "話し合いの最中、沈黙が続くと「何か話さなきゃ」と思うよりも、「みんな今、考えているんだな」と観察する。", dimension: "observation", weight: 1.0 },
 
-    // R3: Creativity/Presentation
-    { text: "自分の考えをスライドや言葉で視覚化し、他人に伝えることが好きだ。", dimension: "expression", weight: 1.2 },
-    { text: "既存のルールに従うよりも、「もっと面白い方法があるはずだ」と新しい提案をしたい。", dimension: "creativity", weight: 1.0 },
+    // Indirect: Adaptability & Risk (Presenter/Facilitator vs Analyst/Scribe)
+    { text: "旅行の計画を立てる際、行きたい場所を絞る作業よりも、現地で「何が起こるかわからない時間」を残しておく方が重要だ。", dimension: "openness", weight: 1.0 },
+    { text: "散らかった部屋を見ると、どこから手をつけるか「直感」で決めるよりも、まずはゴミを「種類別」に分けることから始める。", dimension: "sorting", weight: 1.0 },
 
-    // S1: Sub-Type Determinants (Passion/Social vs Logic/Method)
-    { text: "論理的な正しさよりも、メンバーのやる気や熱量を高めることの方が重要だと思う。", dimension: "passion", weight: 1.0 },
-    { text: "新しいことを始めるワクワク感よりも、最後まで着実にやり遂げる安心感の方が好きだ。", dimension: "stability", weight: 1.0 },
-    { text: "想定外のトラブルが起きた時、慌てるよりも「どう解決するか」と頭が冷えていく感覚がある。", dimension: "logic_calm", weight: 1.0 },
-    { text: "自分の成果を褒められるよりも、チーム全体の雰囲気が良いことの方が嬉しい。", dimension: "harmony", weight: 1.0 }
+    // Indirect: Motivation (Leader/Presenter vs Sub/Scribe)
+    { text: "自分が評価されることよりも、自分の作った仕組みが勝手にうまく回り続けていることの方に快感を覚える。", dimension: "system", weight: 1.0 },
+    { text: "複雑なジグソーパズルを完成させたとき、達成感よりも「もっと効率的な解き方があったはずだ」という反省が先にくる。", dimension: "iteration", weight: 1.0 }
 ];
 
-const mainRoles = {
-    "leader": { name: "リーダー", task: "意思決定と全体指揮" },
-    "subLeader": { name: "サブリーダー", task: "補佐とチームの潤滑油" },
-    "facilitator": { name: "ファシリテーター", task: "議論の活性化と合意形成" },
-    "scribe": { name: "書記・記録", task: "情報の構造化と記録" },
-    "presenter": { name: "発表・プレゼンター", task: "成果の発信と視覚化" },
-    "analyst": { name: "アナリスト", task: "論理チェックとリスク管理" }
-};
-
-const subTypes = {
-    "passionate": { name: "情熱型", trait: "熱量で周囲を動かす", advice: "あなたのエネルギーは最大の武器ですが、冷静なメンバーとの温度差に注意しましょう。" },
-    "strategic": { name: "戦略型", trait: "効率とゴールを見据える", advice: "最短ルートを見抜く力がありますが、プロセスの納得感を大切にするとより協力が得られます。" },
-    "empathic": { name: "共感型", trait: "心の安全性を守る", advice: "メンバーのケアは素晴らしいですが、時には耳の痛い正論を伝える勇気も持ちましょう。" },
-    "methodical": { name: "着実型", trait: "確実性と精度を追求する", advice: "ミスのなさは信頼に直結します。変化の激しい状況では、6割の完成度で動く練習もしてみて。" }
+const profiles = {
+    "architect": { name: "システム建築家", role: "構造設計とリスク管理", style: "論理・効率・俯瞰", advice: "感情を抜きにした「正解」を見抜く力がありますが、チームの熱量を維持するために『無駄な対話』も大切にしましょう。" },
+    "catalyst": { name: "共鳴の触媒者", role: "場の活性化と発想の飛躍", style: "直感・比喩・変化", advice: "あなたの柔軟な発想は停滞を打破します。一方で、具体性に欠けると周囲が迷うので、数値の裏付けを持つ人と組みましょう。" },
+    "anchor": { name: "沈黙のアンカー", role: "安定した運用と記録", style: "観察・分類・着実", advice: "状況を冷静に仕分けるあなたの存在はチームの守り神です。気づいた違和感を早めに口に出すと、大事故を防げます。" },
+    "director": { name: "多角的な指揮者", role: "意思決定とリソース配分", style: "戦略・目的・実利", advice: "全体最適を考えるのが得意ですが、細部に宿るメンバーのこだわりにも目を向けると、より強固な信頼が得られます。" }
 };
 
 let currentQuestionIndex = 0;
@@ -54,11 +47,8 @@ document.getElementById('clear-history-btn').addEventListener('click', clearHist
 
 function startQuiz() {
     currentQuestionIndex = 0;
-    rawScores = {
-        leadership: 0, facilitation: 0, support: 0,
-        expression: 0, creativity: 0, passion: 0,
-        stability: 0, logic_calm: 0, harmony: 0
-    };
+    rawScores = {};
+    questions.forEach(q => rawScores[q.dimension] = 0);
     showView(quizView);
     updateQuestion();
     renderHistory();
@@ -72,11 +62,11 @@ function updateQuestion() {
     optionsContainer.innerHTML = '';
     
     const values = [
-        { val: -2, label: "全く違う", size: "lg" },
+        { val: -2, label: "全くない", size: "lg" },
         { val: -1, label: "", size: "sm" },
-        { val: 0, label: "どちらでもない", size: "md" },
+        { val: 0, label: "普通", size: "md" },
         { val: 1, label: "", size: "sm" },
-        { val: 2, label: "その通りだ", size: "lg" }
+        { val: 2, label: "非常にある", size: "lg" }
     ];
 
     values.forEach(item => {
@@ -92,7 +82,7 @@ function updateQuestion() {
 
 function handleAnswer(value) {
     const q = questions[currentQuestionIndex];
-    rawScores[q.dimension] += value;
+    rawScores[q.dimension] = value;
     
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
@@ -105,70 +95,68 @@ function handleAnswer(value) {
 function showResult() {
     progressBar.style.width = '100%';
     
-    const mainKey = calculateMainRole(rawScores);
-    const subKey = calculateSubType(rawScores);
-    
-    const main = mainRoles[mainKey];
-    const sub = subTypes[subKey];
+    const resultKey = calculateImplicitProfile(rawScores);
+    const profile = profiles[resultKey];
 
     resultType.innerHTML = `
         <div class="role-result">
-            <span class="role-badge">${sub.name} × ${main.name}</span>
-            <h2 class="role-name">${sub.name}な${main.name}</h2>
-            <p class="role-task">専門領域: ${main.task}</p>
+            <span class="role-badge">潜在資質：${profile.style}</span>
+            <h2 class="role-name">${profile.name}</h2>
+            <p class="role-task">推奨される立ち回り: ${profile.role}</p>
         </div>
     `;
 
     resultDesc.innerHTML = `
         <div class="insight-container">
-            <h3>📌 あなたの独自スタイル</h3>
-            <p><strong>${sub.trait}</strong>があなたの特徴です。同じ「${main.name}」担当の中でも、${sub.trait.toLowerCase()}という点が周囲からの信頼に繋がっています。</p>
+            <h3>🧠 無意識の思考パターン</h3>
+            <p>あなたは${getMentalPattern(resultKey)}。この特性はグループワークにおいて、${profile.role}として非常に強力な武器になります。</p>
 
-            <h3>💡 このタイプへのアドバイス</h3>
-            <p>${sub.advice}</p>
+            <h3>💡 パフォーマンス最大化のヒント</h3>
+            <p>${profile.advice}</p>
 
-            <h3>🔍 好みの傾向</h3>
+            <h3>🔍 あなたの「隠れた」嗜好</h3>
             <ul class="pref-list">
-                <li><strong>心地よい行動:</strong> ${getDetailedPref(subKey, 'action')}</li>
-                <li><strong>求める環境:</strong> ${getDetailedPref(subKey, 'env')}</li>
+                <li><strong>心地よい行動:</strong> ${getHiddenPref(resultKey, 'action')}</li>
+                <li><strong>信頼する人:</strong> ${getHiddenPref(resultKey, 'people')}</li>
             </ul>
         </div>
     `;
     
     showView(resultView);
-    saveResult(`${sub.name}な${main.name}`);
+    saveResult(`${profile.name}`);
 }
 
-function calculateMainRole(s) {
-    const scores = {
-        leader: s.leadership * 1.5,
-        presenter: s.expression * 1.5,
-        scribe: s.support * 1.5,
-        facilitator: s.facilitation * 1.2,
-        analyst: s.creativity * 1.2,
-        subLeader: (s.support + s.facilitation) / 2
+function calculateImplicitProfile(s) {
+    // 隠れた相関による複雑な判定
+    const logicScore = (s.structure + s.sorting + s.system) / 3;
+    const intuitionScore = (s.metaphor + s.openness + s.impulse) / 3;
+    const strategicScore = (s.strategic + s.efficiency + s.iteration) / 3;
+    const socialScore = (s.observation - s.efficiency) / 2;
+
+    if (strategicScore > 0.5 && logicScore > 0.5) return "architect";
+    if (intuitionScore > 0.5 && socialScore > 0) return "catalyst";
+    if (logicScore > 0.5 && socialScore > 0.5) return "anchor";
+    return "director";
+}
+
+function getMentalPattern(key) {
+    const patterns = {
+        architect: "物事を「感情」ではなく「構造」で捉える力が極めて高いタイプです。最短ルートを見つけるだけでなく、それが永続的に機能するかを無意識に計算しています",
+        catalyst: "言葉にできない「空気感」や「可能性」をイメージで捉えるタイプです。一見無関係なもの同士を結びつけ、爆発的なアイデアを生む力があります",
+        anchor: "混沌とした状況を「仕分ける」ことで安心を得るタイプです。あなたが整理した情報はチームの共有財産となり、全員の迷いを払拭します",
+        director: "常に「費用対効果」と「目的」を天秤にかけているタイプです。情に流されず、結果を出すために今何が最優先かを冷徹かつ迅速に判断できます"
     };
-    return Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    return patterns[key];
 }
 
-function calculateSubType(s) {
-    const scores = {
-        passionate: s.passion,
-        strategic: s.logic_calm,
-        empathic: s.harmony,
-        methodical: s.stability
-    };
-    return Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-}
-
-function getDetailedPref(sub, type) {
+function getHiddenPref(key, type) {
     const prefs = {
-        passionate: { action: "熱い議論、ビジョンの共有", env: "エネルギーに満ちた、活気ある現場" },
-        strategic: { action: "効率化の検討、勝算の分析", env: "目的が明確で、無駄のない環境" },
-        empathic: { action: "対話による相互理解、ケア", env: "心理的安全性が高く、温かいチーム" },
-        methodical: { action: "手順の確立、確実な遂行", env: "ルールが整備された、安定感のある場" }
+        architect: { action: "無駄を削ぎ落とし、最適な仕組みを作る", people: "馴れ合いではなく、高い専門性で会話ができる人" },
+        catalyst: { action: "予定にない面白い寄り道を楽しむ", people: "自分の枠を超えた発想を面白がってくれる人" },
+        anchor: { action: "バラバラな情報を一つの地図にまとめる", people: "嘘がなく、一貫した行動をとる誠実な人" },
+        director: { action: "混沌とした場に明確な一線を引く", people: "感情論ではなく、メリット・デメリットで議論できる人" }
     };
-    return prefs[sub][type];
+    return prefs[key][type];
 }
 
 function showView(view) {
@@ -177,17 +165,17 @@ function showView(view) {
 }
 
 function saveResult(typeName) {
-    const history = JSON.parse(localStorage.getItem('group_role_v2_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('implicit_role_history') || '[]');
     history.unshift({
         date: new Date().toLocaleString('ja-JP'),
         type: typeName
     });
-    localStorage.setItem('group_role_v2_history', JSON.stringify(history.slice(0, 10)));
+    localStorage.setItem('implicit_role_history', JSON.stringify(history.slice(0, 10)));
     renderHistory();
 }
 
 function renderHistory() {
-    const history = JSON.parse(localStorage.getItem('group_role_v2_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('implicit_role_history') || '[]');
     historyList.innerHTML = '';
     history.forEach(entry => {
         const li = document.createElement('li');
@@ -198,7 +186,7 @@ function renderHistory() {
 
 function clearHistory() {
     if (confirm('履歴を削除しますか？')) {
-        localStorage.removeItem('group_role_v2_history');
+        localStorage.removeItem('implicit_role_history');
         renderHistory();
     }
 }
