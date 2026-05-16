@@ -22,37 +22,54 @@ const questions = [
 
 const types = {
     "innovator": { 
-        name: "クリエイティブ", 
+        name: "INNOVATOR", 
         role: "アイデア出し・発信", 
-        style: "直感 × 発想", 
-        illustration: `<svg viewBox="0 0 100 100" class="svg-pop"><circle cx="50" cy="50" r="40" fill="#FFD93D"/><path d="M50 20 L60 40 L80 40 L65 55 L70 75 L50 65 L30 75 L35 55 L20 40 L40 40 Z" fill="#FFF"/></svg>`,
+        style: "INTUITION × CREATIVE", 
+        illustration: `<svg viewBox="0 0 100 100" class="svg-humanoid">
+            <circle cx="50" cy="25" r="12" fill="#007AFF"/>
+            <path d="M50 37 L50 70 M50 45 L75 30 M50 45 L25 30 M50 70 L70 90 M50 70 L30 90" stroke="#007AFF" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <circle cx="80" cy="25" r="6" fill="#00D2FF">
+                <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite" />
+            </circle>
+        </svg>`,
         description: "あなたは、既存の枠組みにとらわれない自由な思考の持ち主です。誰もが「これが当たり前」と思っていることに対して、「なぜ？」と疑問を持ち、新しい可能性を見出す力に長けています。チームにおいては、行き詰まった状況を打破する『ひらめき』を提供する重要なポジションです。",
         advice: "あなたの最大の武器は『多角的な視点』です。議論が煮詰まったときこそ、あなたの突飛なアイデアが状況を動かします。ただし、アイデアが抽象的になりすぎると周囲が置いていかれることがあるため、『具体的にどう動くか』をセットで考えるか、実務に強いメンバーと連携することで、あなたの真価がより発揮されます。",
         behavior: "1. 批判を恐れず、まずは質より量でアイデアを出してみましょう。2. 自分のひらめきを言語化する練習をすると、より周囲の協力を得やすくなります。3. 計画が細かすぎるとストレスを感じるため、自由度の高いパートを担当させてもらうのがベストです。"
     },
     "strategist": { 
-        name: "ストラテジスト", 
+        name: "STRATEGIST", 
         role: "全体設計・分析", 
-        style: "論理 × 客観", 
-        illustration: `<svg viewBox="0 0 100 100" class="svg-pop"><rect x="20" y="20" width="60" height="60" rx="10" fill="#4DBCFF"/><path d="M35 40 L65 40 M35 50 L65 50 M35 60 L50 60" stroke="#FFF" stroke-width="5" stroke-linecap="round"/></svg>`,
+        style: "LOGIC × ANALYTICAL", 
+        illustration: `<svg viewBox="0 0 100 100" class="svg-humanoid">
+            <circle cx="50" cy="25" r="12" fill="#007AFF"/>
+            <path d="M50 37 L50 70 M50 45 L75 55 M50 45 L25 55 M50 70 L65 95 M50 70 L35 95" stroke="#007AFF" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <rect x="30" y="45" width="40" height="25" rx="4" fill="none" stroke="#007AFF" stroke-width="2" stroke-dasharray="4 2"/>
+        </svg>`,
         description: "あなたは、常に一歩引いた視点から物事を冷静に観察できる分析家です。感情に流されず、事実とデータに基づいて最適解を導き出す能力は、チームの安定性と成功率を劇的に高めます。混沌とした状況を整理し、論理的なロードマップを描くことが得意です。",
         advice: "あなたの冷静さは、チームに『確信』を与えます。リスクを早期に見抜き、致命的なミスを未然に防ぐことができるでしょう。一方で、正論が時に他人の感情を置き去りにしてしまうことがあります。アドバイスを伝える際に『相手の努力』を一度認めるステップを挟むだけで、あなたの提案はよりスムーズに受け入れられるようになります。",
         behavior: "1. 議論が発散したときは、要点を整理してマイルストーンを提示しましょう。2. 完璧主義に陥りすぎず、スピードが求められる場面では『8割の完成度』で良しとする感覚を持つと楽になります。3. 抽象的な議論を数値化・可視化することで、チームへの貢献度が最大化します。"
     },
     "supporter": { 
-        name: "サポーター", 
+        name: "SUPPORTER", 
         role: "フォロー・調整", 
-        style: "共感 × 安定", 
-        illustration: `<svg viewBox="0 0 100 100" class="svg-pop"><path d="M50 30 C70 10 90 30 50 80 C10 30 30 10 50 30" fill="#FF6B6B"/></svg>`,
+        style: "EMPATHY × STABILITY", 
+        illustration: `<svg viewBox="0 0 100 100" class="svg-humanoid">
+            <circle cx="50" cy="25" r="12" fill="#007AFF"/>
+            <path d="M50 37 L50 70 M50 45 C75 35 75 65 50 65 C25 65 25 35 50 45 M50 70 L70 90 M50 70 L30 90" stroke="#007AFF" stroke-width="6" stroke-linecap="round" fill="none"/>
+        </svg>`,
         description: "あなたは、チームの心理的安全性を支える守り神のような存在です。メンバーの小さな変化や感情の機微を敏感に察知し、必要なときにそっと手を差し伸べることができます。あなたの存在があるからこそ、他のメンバーは安心して自分の役割に集中できるのです。",
         advice: "あなたの貢献は数字には現れにくいかもしれませんが、チームの持続性においては最も重要です。メンバー同士の衝突を和らげ、潤滑油として機能することで、チームの総和を最大化させています。自分を『裏方』だと思わず、あなたの調整力がなければチームは崩壊するという自覚を持ってください。",
         behavior: "1. 会議で発言が少ない人をフォローし、意見を出しやすい空気を作りましょう。2. 自分の負担が大きくなりやすいので、無理なときはNOと言う勇気を持ちましょう。3. メンバーの良いところを具体的に褒めることで、チーム全体の士気を劇的に上げることができます。"
     },
     "leader": { 
-        name: "プロデューサー", 
+        name: "PRODUCER", 
         role: "意思決定・推進", 
-        style: "責任感 × 決断", 
-        illustration: `<svg viewBox="0 0 100 100" class="svg-pop"><path d="M50 15 L85 85 L15 85 Z" fill="#6C5CE7"/><circle cx="50" cy="50" r="10" fill="#FFF"/></svg>`,
+        style: "COMMITMENT × DECISIVE", 
+        illustration: `<svg viewBox="0 0 100 100" class="svg-humanoid">
+            <circle cx="50" cy="25" r="12" fill="#007AFF"/>
+            <path d="M50 37 L50 70 M50 45 L80 45 M50 45 L20 45 M50 70 L75 95 M50 70 L25 95" stroke="#007AFF" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <path d="M75 35 L85 45 L75 55" stroke="#007AFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+        </svg>`,
         description: "あなたは、目標に向かって迷いなく突き進む圧倒的なエネルギーの持ち主です。困難な状況でも『私たちがやるべきことはこれだ』と指針を示すことができるため、周囲はあなたを自然と頼りにします。責任感が強く、結果を出すための最短ルートを常に探求しています。",
         advice: "あなたの決断力は、停滞したチームを動かす原動力です。周囲が迷っているときに、あえてリスクを取って決める姿勢は、真のリーダーシップそのものです。ただし、独走しすぎると周囲が疲弊してしまうことがあります。定期的に後ろを振り返り、メンバーとの『納得感の共有』を行うことで、より大きな目標を達成できるはずです。",
         behavior: "1. チームの最終目標を繰り返し言葉にし、全員の目線を合わせましょう。2. メンバーに仕事を任せる際は、やり方まで指示せず『目的』を伝えることで、相手の成長を促せます。3. 意見が対立したときは、どちらが正しいかではなく、どちらが目標に近いかで判断しましょう。"
@@ -94,17 +111,17 @@ function updateQuestion() {
     optionsContainer.innerHTML = '';
     
     const values = [
-        { val: -2, label: "ちがうかも", color: "#FF6B6B", size: "lg" },
-        { val: -1, label: "", color: "#FF8E8E", size: "sm" },
-        { val: 0, label: "ふつう", color: "#E0E0E0", size: "md" },
-        { val: 1, label: "", color: "#8EEDFF", size: "sm" },
-        { val: 2, label: "そうかも！", color: "#4DBCFF", size: "lg" }
+        { val: -2, label: "NO", color: "#E1E8F0", size: "lg" },
+        { val: -1, label: "", color: "#E1E8F0", size: "sm" },
+        { val: 0, label: "MIDDLE", color: "#E1E8F0", size: "md" },
+        { val: 1, label: "", color: "#E1E8F0", size: "sm" },
+        { val: 2, label: "YES", color: "#007AFF", size: "lg" }
     ];
 
     values.forEach(item => {
         const btn = document.createElement('button');
         btn.className = `pop-btn pop-size-${item.size}`;
-        btn.style.backgroundColor = item.color;
+        if (item.val === 2) btn.style.borderColor = "#007AFF";
         if (item.label) {
             const labelSpan = document.createElement('span');
             labelSpan.className = 'pop-btn-label';
@@ -184,17 +201,17 @@ function showView(view) {
 }
 
 function saveResult(typeName) {
-    const history = JSON.parse(localStorage.getItem('team_scan_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('team_scan_v3_history') || '[]');
     history.unshift({
         date: new Date().toLocaleString('ja-JP'),
         type: typeName
     });
-    localStorage.setItem('team_scan_history', JSON.stringify(history.slice(0, 10)));
+    localStorage.setItem('team_scan_v3_history', JSON.stringify(history.slice(0, 10)));
     renderHistory();
 }
 
 function renderHistory() {
-    const history = JSON.parse(localStorage.getItem('team_scan_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('team_scan_v3_history') || '[]');
     historyList.innerHTML = '';
     history.forEach(entry => {
         const li = document.createElement('li');
@@ -205,7 +222,7 @@ function renderHistory() {
 
 function clearHistory() {
     if (confirm('履歴を削除しますか？')) {
-        localStorage.removeItem('team_scan_history');
+        localStorage.removeItem('team_scan_v3_history');
         renderHistory();
     }
 }
