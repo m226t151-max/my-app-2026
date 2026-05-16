@@ -62,18 +62,23 @@ function updateQuestion() {
     optionsContainer.innerHTML = '';
     
     const values = [
-        { val: -2, label: "いいえ", color: "#FF6B6B" },
-        { val: -1, label: "", color: "#FF8E8E" },
-        { val: 0, label: "どちらでもない", color: "#E0E0E0" },
-        { val: 1, label: "", color: "#8EEDFF" },
-        { val: 2, label: "はい", color: "#4DBCFF" }
+        { val: -2, label: "ちがうかも", color: "#FF6B6B", size: "lg" },
+        { val: -1, label: "", color: "#FF8E8E", size: "sm" },
+        { val: 0, label: "ふつう", color: "#E0E0E0", size: "md" },
+        { val: 1, label: "", color: "#8EEDFF", size: "sm" },
+        { val: 2, label: "そうかも！", color: "#4DBCFF", size: "lg" }
     ];
 
     values.forEach(item => {
         const btn = document.createElement('button');
-        btn.className = 'pop-btn';
+        btn.className = `pop-btn pop-size-${item.size}`;
         btn.style.backgroundColor = item.color;
-        if (item.label) btn.setAttribute('title', item.label);
+        if (item.label) {
+            const labelSpan = document.createElement('span');
+            labelSpan.className = 'pop-btn-label';
+            labelSpan.textContent = item.label;
+            btn.appendChild(labelSpan);
+        }
         btn.onclick = () => handleAnswer(item.val);
         optionsContainer.appendChild(btn);
     });
